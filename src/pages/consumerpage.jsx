@@ -1,5 +1,5 @@
 import React, {useEffect, useState, setState} from "react";
-
+import {useHistory} from "react-router-dom";
 import '../consumerpage.css'
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,16 +20,17 @@ function Home(){
        const [field1, setField1] = useState("")
        const [page, setPage] = useState(0)
        const [pagedata, setPageData] = useState({
-        "name": field1,
+        "Location": field1,
         "Address": field2,
         "Email": field3,
         "Brief Description": field4,
         "Type of Project": field5,
     }) 
-        let field1name = ["Name", "Type of Project"]
-        let field2name = ["Address", "Preferred Paint"]
-        let field3name = ["Email", "Estimated square footage"]
-        let field4name = ["Brief description", "Who will be ordering the paint?"]
+    let history = useHistory()
+        let field1name = ["Where is the project?", "Is this an apartment or house?"]
+        let field2name = ["What type of project is it?", "Preferred Paint"]
+        let field3name = ["When do you want the project to start?", "Estimated square footage"]
+        let field4name = ["Brief description of project:", "Who will be ordering the paint?"]
 
 
         const incrementpage = () => {
@@ -45,21 +46,19 @@ function Home(){
         if (page == 1) {
 
           
-            setPage(prevCount => prevCount +1);
+            setPage(prevCount => prevCount +0);
             field5.replace(field1data)
             field6.replace(field2data)
             field7.replace(field3data)
             field8.replace(field4data)
          }
-        //    console.log(field1, field2, field3, field4)
 
-            //api replace
         };
         const decrementpage = () => {
             if (page == 0) {
 
           
-           setPage(prevCount => prevCount -1);
+           setPage(prevCount => prevCount -0);
            field1.replace(field1data)
            field2.replace(field2data)
            field3.replace(field3data)
@@ -78,6 +77,14 @@ function Home(){
 
             //api replace
         };
+        function handleSubmit() {
+            history.push("/thankyou");
+                    //    console.log(field1, field2, field3, field4)
+
+            //api replace
+        }
+
+
         console.log(pagedata)
         return (
             
@@ -142,21 +149,13 @@ function Home(){
                     
                     
                     />
-                    </div>
-                </div>
-                <span className="icon">
-                <a onClick={decrementpage}>
-                <FontAwesomeIcon icon={faArrowLeft}>
+                    </div> {page ==1 ? (
+                        <div class="buttons" style={{marginLeft: "25vw"}}>
+                        <button class="button is-primary is-light" onClick={handleSubmit}>Submit</button>
+            
+                    </div>) :                 
                     
-
-                    
-
-                </FontAwesomeIcon>
-                </a>
-
-
-                    </span>
-                <span className="icon">
+                    <span className="icon" style={{paddingLeft: "55vw"}}>
                 <a onClick={incrementpage}>
                 <FontAwesomeIcon icon={faArrowRight}>
                     
@@ -167,7 +166,18 @@ function Home(){
                 </a>
 
 
-                    </span>
+                    </span>}
+                </div>
+                {page == 1 ? 
+                <span className="icon">
+                <a onClick={decrementpage}>
+                <FontAwesomeIcon icon={faArrowLeft}>
+                </FontAwesomeIcon>
+                </a>
+
+
+                    </span> : null}
+
                 </form>
                 </div>
 
