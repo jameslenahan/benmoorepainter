@@ -3,28 +3,32 @@ import {useHistory} from "react-router-dom";
 import '../consumerpage.css'
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ThankYouPage from '../pages/thankyoupage'
 
-const field2 = ""
-const field3 = ""
-const field4 = ""
-const field5 = ""
-const field6 =""
-const field7 = ""
-const field8 = ""
+const field1 = [""]
+const field2 = [""]
+const field3 = []
+const field4 = []
+const field5 = []
+const field6 = []
+const field7 = []
+const field8 = []
 
 function Home(){
        const [field1data, setfield1data] = useState("")
        const [field2data, setfield2data] = useState("")
        const [field3data, setfield3data] = useState("")
        const [field4data, setfield4data] = useState("")
-       const [field1, setField1] = useState("")
        const [page, setPage] = useState(0)
        const [pagedata, setPageData] = useState({
-        "Location": field1,
-        "Address": field2,
-        "Email": field3,
-        "Brief Description": field4,
-        "Type of Project": field5,
+        "Where is the Project?": field1,
+        "Type of Project": field2,
+        "When do you want the project to start?": field3,
+        "Brief description of project?": field4,
+        "Is this an apartment or house?": field5,
+        "Preferred Paint": field6,
+        "Estimated square footage?": field7,
+        "Who will be ordering the paint?": field8
     }) 
     let history = useHistory()
         let field1name = ["Where is the project?", "Is this an apartment or house?"]
@@ -38,19 +42,26 @@ function Home(){
 
           
            setPage(prevCount => prevCount +1);
-           setField1(field1data)
-           field2.replace(field2data)
-           field3.replace(field3data)
-           field4.replace(field4data)
+           field1.push(field1data)
+           field2.push(field2data)
+            field3.push(field3data)
+            field4.push(field4data)
         }
         if (page == 1) {
 
           
-            setPage(prevCount => prevCount +0);
-            field5.replace(field1data)
-            field6.replace(field2data)
-            field7.replace(field3data)
-            field8.replace(field4data)
+            setPage(prevCount => prevCount +1);
+            field5.push(field1data)
+            field6.push(field2data)
+            field7.push(field3data)
+            field8.push(field4data)
+         }
+         if (page == 2) {
+             return (
+                <ThankYouPage>
+
+                </ThankYouPage>
+             )
          }
 
         };
@@ -59,30 +70,32 @@ function Home(){
 
           
            setPage(prevCount => prevCount -0);
-           field1.replace(field1data)
-           field2.replace(field2data)
-           field3.replace(field3data)
-           field4.replace(field4data)
+           field1.push(field1data)
+           field2.push(field2data)
+           field3.push(field3data)
+           field4.push(field4data)
         }
         else {
 
           
             setPage(prevCount => prevCount -1);
-            field5.replace(field1data)
-            field6.replace(field2data)
-            field7.replace(field3data)
-            field8.replace(field4data)
+            field5.push(field1data)
+            field6.push(field2data)
+            field7.push(field3data)
+            field8.push(field4data)
          }
         //    console.log(field1, field2, field3, field4)
 
-            //api replace
+            //api push
         };
-        function handleSubmit() {
-            history.push("/thankyou");
-                    //    console.log(field1, field2, field3, field4)
+        // const handleSubmit = () => {
+        //     return ( 
 
-            //api replace
-        }
+                 
+                
+            
+        //     //api push
+        // }
 
 
         console.log(pagedata)
@@ -93,6 +106,13 @@ function Home(){
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <title>Hello Bulma!</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+            {page == 2 ?  
+                <ThankYouPage>
+                    </ThankYouPage> :
+                    
+            
+
+
             <div className="consumerbox">
             <form className="box">
                 <div className="field">
@@ -132,9 +152,7 @@ function Home(){
                     type="text" 
                     placeholder="example" 
                     value={field3data}
-                    onChange={e => setfield3data(e.target.value)}
-                    
-                    
+                    onChange={e => setfield3data(e.target.value)}                   
                     />
                     </div>
                 </div>
@@ -145,17 +163,25 @@ function Home(){
                     type="text" 
                     placeholder="example" 
                     value={field4data}
-                    onChange={e => setfield4data(e.target.value)}
+                    onChange={e => setfield4data(e.target.value)}/>
                     
-                    
-                    />
-                    </div> {page ==1 ? (
-                        <div class="buttons" style={{marginLeft: "25vw"}}>
-                        <button class="button is-primary is-light" onClick={handleSubmit}>Submit</button>
-            
-                    </div>) :                 
-                    
-                    <span className="icon" style={{paddingLeft: "55vw"}}>
+                    </div> 
+
+                    {page ==1 ? (
+                        <div>
+                        <span className="icon">
+                            <a onClick={decrementpage} style={{marginTop: "2vw"}}>
+                            <FontAwesomeIcon icon={faArrowLeft}>
+                            </FontAwesomeIcon>
+                            </a>
+
+
+                        </span>
+
+                </div>
+                    ) 
+                    :                 
+                    <span className="icon" style={{paddingLeft: "55vw", marginTop: "1vw"}}>
                 <a onClick={incrementpage}>
                 <FontAwesomeIcon icon={faArrowRight}>
                     
@@ -164,22 +190,16 @@ function Home(){
 
                 </FontAwesomeIcon>
                 </a>
-
-
                     </span>}
                 </div>
-                {page == 1 ? 
-                <span className="icon">
-                <a onClick={decrementpage}>
-                <FontAwesomeIcon icon={faArrowLeft}>
-                </FontAwesomeIcon>
-                </a>
-
-
-                    </span> : null}
 
                 </form>
-                </div>
+                {page == 1 ? 
+                <a onClick={incrementpage}>
+                    <button className="button is-primary">Submit Project</button>
+                </a>
+                    : null}
+                </div>}
 
           </div>       
             
