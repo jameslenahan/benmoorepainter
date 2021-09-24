@@ -4,7 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './pages/home'
 import ConsumerPage from './pages/consumerpage'
 import ThankYouPage from './pages/thankyoupage'
-
+import PainterPage from './pages/painterpage'
 
 function App() {
   return (
@@ -32,6 +32,16 @@ function App() {
           <ThankYouPage>
 
           </ThankYouPage>}
+        
+        >
+
+        </Route>
+        
+        <Route exact path='/portal'
+          render={()=> 
+          <PainterPage>
+
+          </PainterPage>}
         
         >
 

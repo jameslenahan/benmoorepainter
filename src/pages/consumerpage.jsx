@@ -7,34 +7,42 @@ import ThankYouPage from '../pages/thankyoupage'
 
 const field1 = [""]
 const field2 = [""]
-const field3 = []
-const field4 = []
-const field5 = []
-const field6 = []
-const field7 = []
-const field8 = []
+const field3 = [""]
+const field4 = [""]
+const field5 = [""]
+const field6 = [""]
+const field7 = [""]
+const field8 = [""]
 
 function Home(){
        const [field1data, setfield1data] = useState("")
        const [field2data, setfield2data] = useState("")
        const [field3data, setfield3data] = useState("")
        const [field4data, setfield4data] = useState("")
+       const [field5data, setfield5data] = useState("")
+       const [field6data, setfield6data] = useState("")
+       const [field7data, setfield7data] = useState("")
+       const [field8data, setfield8data] = useState("")
        const [page, setPage] = useState(0)
-       const [pagedata, setPageData] = useState({
-        "Where is the Project?": field1,
-        "Type of Project": field2,
-        "When do you want the project to start?": field3,
-        "Brief description of project?": field4,
-        "Is this an apartment or house?": field5,
-        "Preferred Paint": field6,
-        "Estimated square footage?": field7,
-        "Who will be ordering the paint?": field8
+       const pagedata = ({
+        "Where is the Project?": field1data,
+        "Type of Project": field2data,
+        "When do you want the project to start?": field3data,
+        "Brief description of project?": field4data,
+        "Is this an apartment or house?": field5data,
+        "Preferred Paint": field6data,
+        "Estimated square footage?": field7data,
+        "Who will be ordering the paint?": field8data
     }) 
     let history = useHistory()
-        let field1name = ["Where is the project?", "Is this an apartment or house?"]
-        let field2name = ["What type of project is it?", "Preferred Paint"]
-        let field3name = ["When do you want the project to start?", "Estimated square footage"]
-        let field4name = ["Brief description of project:", "Who will be ordering the paint?"]
+        let field1name = ["Where is the project?"]
+        let field2name = ["What type of project is it?"]
+        let field3name = ["When do you want the project to start?"]
+        let field4name = ["Brief description of project:" ]
+        let field5name = ["Is this an apartment or house?"]
+        let field6name = ["Preferred Paint"]
+        let field7name = ["Estimated square footage"]
+        let field8name = ["Who will be ordering the paint?"]
 
 
         const incrementpage = () => {
@@ -42,24 +50,21 @@ function Home(){
 
           
            setPage(prevCount => prevCount +1);
-           field1.push(field1data)
-           field2.push(field2data)
-            field3.push(field3data)
-            field4.push(field4data)
+
+
         }
         if (page == 1) {
 
           
             setPage(prevCount => prevCount +1);
-            field5.push(field1data)
-            field6.push(field2data)
-            field7.push(field3data)
-            field8.push(field4data)
+
          }
          if (page == 2) {
-             return (
-                <ThankYouPage>
 
+             return (
+               
+                <ThankYouPage>
+                   
                 </ThankYouPage>
              )
          }
@@ -70,32 +75,17 @@ function Home(){
 
           
            setPage(prevCount => prevCount -0);
-           field1.push(field1data)
-           field2.push(field2data)
-           field3.push(field3data)
-           field4.push(field4data)
+
         }
         else {
 
           
             setPage(prevCount => prevCount -1);
-            field5.push(field1data)
-            field6.push(field2data)
-            field7.push(field3data)
-            field8.push(field4data)
+
          }
-        //    console.log(field1, field2, field3, field4)
 
-            //api push
         };
-        // const handleSubmit = () => {
-        //     return ( 
 
-                 
-                
-            
-        //     //api push
-        // }
 
 
         console.log(pagedata)
@@ -117,7 +107,7 @@ function Home(){
             <form className="box">
                 <div className="field">
                     <label className="label">
-                        {page == 0 ? field1name[page] : field1name[page]}
+                        {page == 0 ? field1name[page] : field5name[0]}
                     
                 
                 </label>
@@ -125,45 +115,45 @@ function Home(){
                     <input className="input" 
                     type="text" 
                     placeholder="example" 
-                    value={field1data}
-                    onChange={e => setfield1data(e.target.value)}
+                    value={page == 0 ? field1data : field5data}
+                    onChange={page == 0 ? e => setfield1data(e.target.value) : e => setfield5data(e.target.value)}
                     
                     
                     />
                     </div>
                 </div>
              <div className="field">
-                    <label className="label">{page == 0 ? field2name[page] : field2name[page]}</label>
+                    <label className="label">{page == 0 ? field2name[page] : field6name[0]}</label>
                     <div className="control">
                     <input className="input" 
                     type="text" 
                     placeholder="example" 
-                    value={field2data}
-                    onChange={e => setfield2data(e.target.value)}
+                    value={page == 0 ? field2data : field6data}
+                    onChange={page == 0 ? e => setfield2data(e.target.value) : e => setfield6data(e.target.value)}
                     
                     
                     />
                     </div>
                 </div>
                 <div className="field">
-                    <label className="label">{page == 0 ? field3name[page] : field3name[page]}</label>
+                    <label className="label">{page == 0 ? field3name[page] : field7name[0]}</label>
                     <div className="control">
                     <input className="input" 
                     type="text" 
                     placeholder="example" 
-                    value={field3data}
-                    onChange={e => setfield3data(e.target.value)}                   
+                    value={page == 0 ? field3data : field7data}
+                    onChange={page == 0 ? e => setfield3data(e.target.value) : e => setfield7data(e.target.value)}                   
                     />
                     </div>
                 </div>
                 <div className="field">
-                    <label className="label">{page == 0 ? field4name[page] : field4name[page]}</label>
+                    <label className="label">{page == 0 ? field4name[page] : field8name[0]}</label>
                     <div className="control">
                     <input className="input" 
                     type="text" 
                     placeholder="example" 
-                    value={field4data}
-                    onChange={e => setfield4data(e.target.value)}/>
+                    value={page == 0 ? field4data : field8data}
+                    onChange={page == 0 ? e => setfield4data(e.target.value) : e => setfield8data(e.target.value)}/>
                     
                     </div> 
 

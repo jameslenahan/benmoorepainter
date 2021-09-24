@@ -1,0 +1,10 @@
+.feedcontainer {
+    margin-top: 10vh;
+    text-align: center;
+
+}
+
+
+li {
+    list-style-position: inside;
+}
