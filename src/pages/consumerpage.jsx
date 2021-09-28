@@ -85,7 +85,7 @@ function Home(){
          }
 
         };
-
+    
 
 
         console.log(pagedata)
@@ -94,7 +94,7 @@ function Home(){
             <div>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Hello Bulma!</title>
+            <title>Ben Moore Painter</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
             {page == 2 ?  
                 <ThankYouPage>
@@ -116,9 +116,7 @@ function Home(){
                     type="text" 
                     placeholder="example" 
                     value={page == 0 ? field1data : field5data}
-                    onChange={page == 0 ? e => setfield1data(e.target.value) : e => setfield5data(e.target.value)}
-                    
-                    
+                    onChange={page == 0 ? e => setfield1data(e.target.value) : e => setfield5data(e.target.value)}   
                     />
                     </div>
                 </div>
@@ -167,7 +165,7 @@ function Home(){
 
 
                         </span>
-
+ 
                 </div>
                     ) 
                     :                 

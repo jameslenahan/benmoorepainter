@@ -1,7 +1,19 @@
 import React, {useEffect, useState, setState} from "react";
 import '../css/logincreate.css'
-
+import axios from "axios"
 function CreateAccount () {
+    const CreateAccountSend = () => {
+
+        axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        axios.post('localhost:5000/signup', "test")
+        .then((response) => {
+            console.log(response.data)
+        })
+    }
+
+
+
     return(
     <div>
     <meta charSet="utf-8" />
@@ -45,7 +57,7 @@ function CreateAccount () {
 
         <div className="field is-grouped">
             <div className="control">
-            <a href="/benmoorepainter">
+            <a onClick={CreateAccountSend}>
             <button className="button is-link">Submit</button>
            
 

@@ -2,6 +2,14 @@ import React, {useEffect, useState, setState} from "react";
 import '../css/painters.css'
 
 function PainterPage() {
+    let projectLocation = ["Example 1", "Example 2"]
+    let projectData = ["data1", "data2"]
+    let projectInformation = ({
+        projectLocation,
+        projectData
+    })
+  
+
     return (
         <div>
         <meta charSet="utf-8" />
@@ -11,17 +19,19 @@ function PainterPage() {
         <div className="feedcontainer">
 
        
-        <div className="content is-medium">
-            <h1>Project in Waxhaw </h1>
-            <p>See details of this project below:</p>
-            <ul>
-                <li>Type of Project: Interior</li>
-                <li>Start Date: ~October 10</li>
-                <li>Description: Project is for two bedrooms & living room in downstairs</li>
-                <li>Paint Type: Regal</li>
-                <li>Estimated Square Footage: 1200 sqft</li>
-                <li>This will be ordered by the <strong>customer</strong></li>
-            </ul>
+        <div class="container">
+            <div class="notification is-primary">
+                See the available <strong>projects</strong> below.
+            </div>
+            {projectInformation.map(element => {return ( 
+                
+                            <section class="section is-medium">
+                <h1 class="title">{element}</h1>
+                <h2 class="subtitle">
+                    
+                </h2>
+                </section>
+            )})}
             </div>
             </div>
 
