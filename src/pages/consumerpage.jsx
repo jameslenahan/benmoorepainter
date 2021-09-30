@@ -4,6 +4,7 @@ import '../consumerpage.css'
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ThankYouPage from '../pages/thankyoupage'
+import CreateAccount from "../components/createaccount";
 
 const field1 = [""]
 const field2 = [""]
@@ -14,7 +15,7 @@ const field6 = [""]
 const field7 = [""]
 const field8 = [""]
 
-function Home(){
+function ConsumerPage(userId){
        const [field1data, setfield1data] = useState("")
        const [field2data, setfield2data] = useState("")
        const [field3data, setfield3data] = useState("")
@@ -24,6 +25,63 @@ function Home(){
        const [field7data, setfield7data] = useState("")
        const [field8data, setfield8data] = useState("")
        const [page, setPage] = useState(0)
+       let history = useHistory()
+       let field1name = ["Where is the project?"]
+       let field2name = ["What type of project is it?"]
+       let field3name = ["When do you want the project to start?"]
+       let field4name = ["Brief description of project:" ]
+       let field5name = ["Is this an apartment or house?"]
+       let field6name = ["Preferred Paint"]
+       let field7name = ["Estimated square footage"]
+       let field8name = ["Who will be ordering the paint?"]
+       const [userID, setUserID] = useState(null)
+
+ 
+       if (userId == null) {
+           let userID = userId
+           loggedIn(userID)
+           
+       }
+       else {
+           return (
+               <CreateAccount>
+
+               </CreateAccount>
+           )
+       }
+       
+   
+   
+   
+   
+       function loggedIn () {
+           fetch(`http://localhost:3600/users/${userID}`, {
+               method: 'GET',
+               headers: {
+                   "Content-type": "application/json",
+                   'Authorization': 'Bearer ' + ("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTU1YmVjMmM3M2IxMGExNTRkZWQyYzEiLCJlbWFpbCI6ImphbWVzQG1ldGhvZGV5ZXMuY29tIiwicGVybWlzc2lvbkxldmVsIjoxLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6IkphbWVzIExlbmFoYW4iLCJyZWZyZXNoS2V5IjoiTHUweFFaa1F6dU9JUHUxVmMyZ0RqUT09IiwiaWF0IjoxNjMzMDEwMzEzfQ.PeIHlDh3vkAQAhEfkQn_i50VIwqmz1xQwQPD81H7YUo"), 
+               },
+           })
+           .then(function(response) {
+               return response.json();
+           })
+           .then(function(data) {
+   
+               console.log('Request succeeded with JSON response', data);
+   
+               return true
+           })
+           .catch(function(error) {
+               console.log('Request failed', error);
+               return false
+           });
+       }
+
+
+
+
+
+
        const pagedata = ({
         "Where is the Project?": field1data,
         "Type of Project": field2data,
@@ -34,15 +92,7 @@ function Home(){
         "Estimated square footage?": field7data,
         "Who will be ordering the paint?": field8data
     }) 
-    let history = useHistory()
-        let field1name = ["Where is the project?"]
-        let field2name = ["What type of project is it?"]
-        let field3name = ["When do you want the project to start?"]
-        let field4name = ["Brief description of project:" ]
-        let field5name = ["Is this an apartment or house?"]
-        let field6name = ["Preferred Paint"]
-        let field7name = ["Estimated square footage"]
-        let field8name = ["Who will be ordering the paint?"]
+
 
 
         const incrementpage = () => {
@@ -59,15 +109,7 @@ function Home(){
             setPage(prevCount => prevCount +1);
 
          }
-         if (page == 2) {
 
-             return (
-               
-                <ThankYouPage>
-                   
-                </ThankYouPage>
-             )
-         }
 
         };
         const decrementpage = () => {
@@ -85,10 +127,7 @@ function Home(){
          }
 
         };
-    
 
-
-        console.log(pagedata)
         return (
             
             <div>
@@ -97,7 +136,7 @@ function Home(){
             <title>Ben Moore Painter</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
             {page == 2 ?  
-                <ThankYouPage>
+                <ThankYouPage name={field1data} >
                     </ThankYouPage> :
                     
             
@@ -201,5 +240,5 @@ function Home(){
     
 
 
-export default Home;
+export default ConsumerPage;
 

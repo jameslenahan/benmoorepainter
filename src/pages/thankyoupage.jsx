@@ -1,12 +1,13 @@
 import React, {useEffect, useState, setState} from "react";
 import '../css/thankyou.css'
 
-function ThankYouPage() {
+function ThankYouPage(name) {
+    console.log(name)
     return (
         <div>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Hello Bulma!</title>
+        <title>Thank You Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
        <div className="thankyoupage">
        <div className="section">
@@ -15,6 +16,7 @@ function ThankYouPage() {
             <div class="hero-body">
                 <p class="title">
                 Thank you for submitting your project!
+
                 </p>
                 <p class="subtitle">
                 A painter will be in touch if you are a good fit.
