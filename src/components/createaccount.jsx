@@ -10,6 +10,7 @@ function CreateAccount () {
     const [lastname, setlastName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [userinfo, setuserinfo] = useState("")
 
 
     let history = useHistory()
@@ -33,19 +34,34 @@ function CreateAccount () {
             return response.json();
         })
         .then(function(data) {
-            // console.log('Request succeeded with JSON response', data);
-            return (
-                <ConsumerPage userId={data}>
-                    </ConsumerPage>
-            )
+            setuserinfo(data)
+            if (data == null) {
+                CreateAccountSend()
+            }
+            else {
+                return(
+                    <ConsumerPage>
 
-        })
+                    </ConsumerPage>
+                )
+                // history.push("/benmoorepainter")
+                // console.log(userinfo)
+            }
+         
+            // console.log('Request succeeded with JSON response', data);
+
+
+        }
+        
+        
+        
+        )
         .catch(function(error) {
             console.log('Request failed', error);
         });
 
 
-  
+
 
         
     }

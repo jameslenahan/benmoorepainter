@@ -36,20 +36,7 @@ function ConsumerPage(userId){
        let field8name = ["Who will be ordering the paint?"]
        const [userID, setUserID] = useState(null)
 
- 
-       if (userId == null) {
-           let userID = userId
-           loggedIn(userID)
-           
-       }
-       else {
-           return (
-               <CreateAccount>
-
-               </CreateAccount>
-           )
-       }
-       
+      
    
    
    
@@ -77,7 +64,19 @@ function ConsumerPage(userId){
            });
        }
 
+ 
+       if (userId != null) {
+        loggedIn(userID)
+        
+    }
+    else {
+        return (
+            <CreateAccount>
 
+            </CreateAccount>
+        )
+    }
+    
 
 
 
